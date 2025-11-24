@@ -7,7 +7,246 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>мой первый сайт</h1>
-    <img src="https://picsum.photos/id/237/500/300" alt="Черная собака">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toyota Camry 70 | Легенда Бизнес-Класса</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        toyotaRed: '#EB0A1E',
+                        darkBg: '#0f0f0f',
+                        cardBg: '#1a1a1a'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Эффект плавного появления при скролле */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #EB0A1E;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-white font-sans antialiased selection:bg-toyotaRed selection:text-white">
+
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <span class="text-2xl font-black tracking-widest uppercase">Camry <span class="text-toyotaRed">XV70</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#features" class="hover:text-toyotaRed transition-colors duration-300 px-3 py-2 text-sm font-medium">Преимущества</a>
+                        <a href="#specs" class="hover:text-toyotaRed transition-colors duration-300 px-3 py-2 text-sm font-medium">Характеристики</a>
+                        <a href="#gallery" class="hover:text-toyotaRed transition-colors duration-300 px-3 py-2 text-sm font-medium">Галерея</a>
+                        <a href="#contact" class="bg-toyotaRed hover:bg-red-700 text-white px-5 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105">Тест-драйв</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1621007947382-bb3c3968e3bb?q=80&w=2070&auto=format&fit=crop" alt="Toyota Camry Background" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-black/40"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl">
+            <h2 class="text-toyotaRed font-bold tracking-widest mb-4 uppercase animate-pulse">The New Generation</h2>
+            <h1 class="text-5xl md:text-8xl font-black mb-6 leading-tight">
+                АБСОЛЮТНОЕ<br>ПРЕВОСХОДСТВО
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto font-light">
+                Дерзкий дизайн, инновационная платформа TNGA и бескомпромиссный комфорт.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#specs" class="border border-white px-8 py-4 hover:bg-white hover:text-black transition-all duration-300 font-bold uppercase tracking-wider">
+                    Подробнее
+                </a>
+                <a href="#contact" class="bg-toyotaRed border border-toyotaRed px-8 py-4 text-white hover:bg-transparent hover:text-toyotaRed transition-all duration-300 font-bold uppercase tracking-wider">
+                    Конфигуратор
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="py-20 bg-darkBg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Философия <span class="text-toyotaRed">TNGA</span></h2>
+                <p class="text-gray-400">Технологии, которые меняют представление о вождении.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-cardBg p-8 rounded-2xl hover:shadow-[0_0_20px_rgba(235,10,30,0.3)] transition-all duration-300 fade-in border border-white/5">
+                    <div class="text-toyotaRed text-4xl mb-6"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Динамика</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Новый двигатель 3.5L V6 в паре с 8-ступенчатой АКПП обеспечивает взрывной разгон и плавность хода.
+                    </p>
+                </div>
+                <div class="bg-cardBg p-8 rounded-2xl hover:shadow-[0_0_20px_rgba(235,10,30,0.3)] transition-all duration-300 fade-in border border-white/5 delay-100">
+                    <div class="text-toyotaRed text-4xl mb-6"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Безопасность</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Комплекс Toyota Safety Sense 2.5: адаптивный круиз, удержание в полосе и распознавание пешеходов.
+                    </p>
+                </div>
+                <div class="bg-cardBg p-8 rounded-2xl hover:shadow-[0_0_20px_rgba(235,10,30,0.3)] transition-all duration-300 fade-in border border-white/5 delay-200">
+                    <div class="text-toyotaRed text-4xl mb-6"><i class="fas fa-couch"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Комфорт</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Увеличенное пространство для ног, премиальная кожа Nappa и акустика JBL создают атмосферу лаунжа.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="specs" class="py-20 bg-cardBg relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-toyotaRed blur-[150px] opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl font-black mb-8">ТЕХНИЧЕСКОЕ<br>СОВЕРШЕНСТВО</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                            <span class="text-gray-400">Двигатель (Top)</span>
+                            <span class="font-bold text-xl">3.5L V6</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                            <span class="text-gray-400">Мощность</span>
+                            <span class="font-bold text-xl">249 л.с.</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                            <span class="text-gray-400">Разгон 0-100 км/ч</span>
+                            <span class="font-bold text-xl">7.7 сек</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                            <span class="text-gray-400">Привод</span>
+                            <span class="font-bold text-xl">Передний</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                            <span class="text-gray-400">Расход (смешанный)</span>
+                            <span class="font-bold text-xl">8.7 л/100км</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <button class="text-toyotaRed font-bold hover:text-white transition-colors flex items-center gap-2">
+                            Скачать брошюру <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2070&auto=format&fit=crop" alt="Camry Side View" class="rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-500 transform hover:scale-105">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 bg-darkBg">
+        <div class="max-w-7xl mx-auto px-4 mb-10">
+            <h2 class="text-3xl font-bold uppercase tracking-wider">Галерея</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div class="overflow-hidden group h-64 md:col-span-2">
+                <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Interior">
+            </div>
+            <div class="overflow-hidden group h-64">
+                <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Wheel">
+            </div>
+            <div class="overflow-hidden group h-64">
+                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Light">
+            </div>
+            <div class="overflow-hidden group h-64 md:col-span-2">
+                <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=2036&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Rear">
+            </div>
+            <div class="overflow-hidden group h-64 md:col-span-2">
+                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2047&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Front">
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-black pt-20 pb-10 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-black mb-6">ГОТОВЫ К ДРАЙВУ?</h2>
+            <p class="text-gray-400 mb-10">Оставьте заявку, и мы свяжемся с вами в течение 15 минут.</p>
+            
+            <form class="max-w-md mx-auto space-y-4 mb-16">
+                <input type="text" placeholder="Ваше имя" class="w-full bg-white/5 border border-white/10 p-4 rounded text-white focus:outline-none focus:border-toyotaRed transition-colors">
+                <input type="tel" placeholder="+7 (___) ___-__-__" class="w-full bg-white/5 border border-white/10 p-4 rounded text-white focus:outline-none focus:border-toyotaRed transition-colors">
+                <button type="submit" class="w-full bg-toyotaRed hover:bg-red-700 text-white font-bold py-4 rounded transition-all uppercase tracking-widest">
+                    Заказать звонок
+                </button>
+            </form>
+
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-telegram"></i></a>
+            </div>
+            
+            <p class="text-gray-600 text-sm">
+                &copy; 2025 Toyota Fan Site. Не является официальным сайтом Toyota. <br>
+                Все изображения принадлежат их владельцам.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
