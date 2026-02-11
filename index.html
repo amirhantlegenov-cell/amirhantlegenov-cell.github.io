@@ -1,252 +1,342 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toyota Camry 70 | Легенда Бизнес-Класса</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
-                    },
-                    colors: {
-                        toyotaRed: '#EB0A1E',
-                        darkBg: '#0f0f0f',
-                        cardBg: '#1a1a1a'
-                    }
-                }
-            }
-        }
-    </script>
+    <title>TechPro | Инженерные Решения</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* Эффект плавного появления при скролле */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        /* --- Сброс стилей и переменные --- */
+        :root {
+            --primary-color: #0056b3; /* Инженерный синий */
+            --secondary-color: #2c3e50; /* Темный грифель */
+            --accent-color: #f39c12; /* Оранжевый (безопасность/акцент) */
+            --light-bg: #f8f9fa;
+            --text-color: #333;
+            --white: #ffffff;
         }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- Шапка (Header) --- */
+        header {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid var(--white);
+            padding: 5px 10px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--accent-color); }
+
+        /* --- Герой (Hero Section) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* Пример изображения */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 60px; /* Компенсация шапки */
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover { background: var(--accent-color); }
+
+        /* --- Секции (Общие стили) --- */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-title .line {
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 0 auto;
+        }
+
+        /* --- Услуги (Services) --- */
+        .services { background: var(--light-bg); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover { transform: translateY(-5px); }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- Команда (Team) --- */
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .team-member {
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .member-photo {
+            width: 200px;
+            height: 200px;
+            background-color: #ddd;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 4px solid var(--primary-color);
         }
         
-        /* Кастомный скроллбар */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        ::-webkit-scrollbar-track {
-            background: #0f0f0f;
+
+        .team-member h3 { color: var(--secondary-color); margin-bottom: 5px; }
+        .team-member p { color: #666; font-style: italic; }
+
+        /* --- Контакты (Contact) --- */
+        .contact { background: var(--secondary-color); color: var(--white); }
+        .contact h2 { color: var(--white); }
+
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #EB0A1E;
-            border-radius: 4px;
+
+        .contact-info p { margin: 10px 0; font-size: 1.1rem; }
+
+        /* --- Футер --- */
+        footer {
+            background: #1a252f;
+            color: #7f8c8d;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        /* --- Адаптивность --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2rem; }
+            nav ul { display: none; } /* Для упрощения скрываем меню на моб (нужен JS для бургера) */
+            .container { justify-content: center; }
         }
     </style>
 </head>
-<body class="bg-darkBg text-white font-sans antialiased selection:bg-toyotaRed selection:text-white">
+<body>
 
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0">
-                    <span class="text-2xl font-black tracking-widest uppercase">Camry <span class="text-toyotaRed">XV70</span></span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#features" class="hover:text-toyotaRed transition-colors duration-300 px-3 py-2 text-sm font-medium">Преимущества</a>
-                        <a href="#specs" class="hover:text-toyotaRed transition-colors duration-300 px-3 py-2 text-sm font-medium">Характеристики</a>
-                        <a href="#gallery" class="hover:text-toyotaRed transition-colors duration-300 px-3 py-2 text-sm font-medium">Галерея</a>
-                        <a href="#contact" class="bg-toyotaRed hover:bg-red-700 text-white px-5 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105">Тест-драйв</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1621007947382-bb3c3968e3bb?q=80&w=2070&auto=format&fit=crop" alt="Toyota Camry Background" class="w-full h-full object-cover opacity-60">
-            <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-black/40"></div>
-        </div>
-
-        <div class="relative z-10 text-center px-4 max-w-5xl">
-            <h2 class="text-toyotaRed font-bold tracking-widest mb-4 uppercase animate-pulse">The New Generation</h2>
-            <h1 class="text-5xl md:text-8xl font-black mb-6 leading-tight">
-                АБСОЛЮТНОЕ<br>ПРЕВОСХОДСТВО
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto font-light">
-                Дерзкий дизайн, инновационная платформа TNGA и бескомпромиссный комфорт.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#specs" class="border border-white px-8 py-4 hover:bg-white hover:text-black transition-all duration-300 font-bold uppercase tracking-wider">
-                    Подробнее
-                </a>
-                <a href="#contact" class="bg-toyotaRed border border-toyotaRed px-8 py-4 text-white hover:bg-transparent hover:text-toyotaRed transition-all duration-300 font-bold uppercase tracking-wider">
-                    Конфигуратор
-                </a>
-            </div>
+    <header>
+        <div class="container">
+            <div class="logo">TechPro</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#team">Команда</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <section id="features" class="py-20 bg-darkBg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Философия <span class="text-toyotaRed">TNGA</span></h2>
-                <p class="text-gray-400">Технологии, которые меняют представление о вождении.</p>
-            </div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Инженерные решения будущего</h1>
+            <p>Профессиональное проектирование, технический аудит и внедрение инноваций для вашего производства.</p>
+            <a href="#contact" class="btn">Получить консультацию</a>
+        </div>
+    </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="bg-cardBg p-8 rounded-2xl hover:shadow-[0_0_20px_rgba(235,10,30,0.3)] transition-all duration-300 fade-in border border-white/5">
-                    <div class="text-toyotaRed text-4xl mb-6"><i class="fas fa-tachometer-alt"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Динамика</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Новый двигатель 3.5L V6 в паре с 8-ступенчатой АКПП обеспечивает взрывной разгон и плавность хода.
-                    </p>
-                </div>
-                <div class="bg-cardBg p-8 rounded-2xl hover:shadow-[0_0_20px_rgba(235,10,30,0.3)] transition-all duration-300 fade-in border border-white/5 delay-100">
-                    <div class="text-toyotaRed text-4xl mb-6"><i class="fas fa-shield-alt"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Безопасность</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Комплекс Toyota Safety Sense 2.5: адаптивный круиз, удержание в полосе и распознавание пешеходов.
-                    </p>
-                </div>
-                <div class="bg-cardBg p-8 rounded-2xl hover:shadow-[0_0_20px_rgba(235,10,30,0.3)] transition-all duration-300 fade-in border border-white/5 delay-200">
-                    <div class="text-toyotaRed text-4xl mb-6"><i class="fas fa-couch"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Комфорт</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Увеличенное пространство для ног, премиальная кожа Nappa и акустика JBL создают атмосферу лаунжа.
-                    </p>
-                </div>
+    <section id="services" class="services">
+        <div class="section-title">
+            <h2>Наши компетенции</h2>
+            <div class="line"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Проектирование</h3>
+                <p>Разработка чертежей, 3D-моделей и технической документации любой сложности.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏭</div>
+                <h3>Автоматизация</h3>
+                <p>Внедрение АСУ ТП и роботизированных систем для повышения эффективности.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📐</div>
+                <h3>Технический надзор</h3>
+                <p>Контроль качества выполнения работ и соответствия стандартам ГОСТ и ISO.</p>
             </div>
         </div>
     </section>
 
-    <section id="specs" class="py-20 bg-cardBg relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-toyotaRed blur-[150px] opacity-20"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="fade-in">
-                    <h2 class="text-4xl font-black mb-8">ТЕХНИЧЕСКОЕ<br>СОВЕРШЕНСТВО</h2>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                            <span class="text-gray-400">Двигатель (Top)</span>
-                            <span class="font-bold text-xl">3.5L V6</span>
-                        </div>
-                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                            <span class="text-gray-400">Мощность</span>
-                            <span class="font-bold text-xl">249 л.с.</span>
-                        </div>
-                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                            <span class="text-gray-400">Разгон 0-100 км/ч</span>
-                            <span class="font-bold text-xl">7.7 сек</span>
-                        </div>
-                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                            <span class="text-gray-400">Привод</span>
-                            <span class="font-bold text-xl">Передний</span>
-                        </div>
-                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                            <span class="text-gray-400">Расход (смешанный)</span>
-                            <span class="font-bold text-xl">8.7 л/100км</span>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-10">
-                        <button class="text-toyotaRed font-bold hover:text-white transition-colors flex items-center gap-2">
-                            Скачать брошюру <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
+    <section id="team">
+        <div class="section-title">
+            <h2>Ведущие специалисты</h2>
+            <div class="line"></div>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Инженер">
                 </div>
-                
-                <div class="fade-in">
-                    <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2070&auto=format&fit=crop" alt="Camry Side View" class="rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-500 transform hover:scale-105">
+                <h3>Алексей Петров</h3>
+                <p>Главный инженер</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Специалист">
                 </div>
+                <h3>Мария Иванова</h3>
+                <p>Специалист по автоматизации</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Технолог">
+                </div>
+                <h3>Дмитрий Сидоров</h3>
+                <p>Инженер-технолог</p>
             </div>
         </div>
     </section>
 
-    <section id="gallery" class="py-20 bg-darkBg">
-        <div class="max-w-7xl mx-auto px-4 mb-10">
-            <h2 class="text-3xl font-bold uppercase tracking-wider">Галерея</h2>
+    <section id="contact" class="contact">
+        <div class="section-title">
+            <h2>Свяжитесь с нами</h2>
+            <div class="line"></div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
-            <div class="overflow-hidden group h-64 md:col-span-2">
-                <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Interior">
+        <div class="contact-content">
+            <div class="contact-info">
+                <p>📍 г. Москва, ул. Индустриальная, д. 45</p>
+                <p>📞 +7 (999) 000-00-00</p>
+                <p>✉️ info@techpro-example.com</p>
             </div>
-            <div class="overflow-hidden group h-64">
-                <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Wheel">
-            </div>
-            <div class="overflow-hidden group h-64">
-                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Light">
-            </div>
-            <div class="overflow-hidden group h-64 md:col-span-2">
-                <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=2036&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Rear">
-            </div>
-            <div class="overflow-hidden group h-64 md:col-span-2">
-                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2047&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Front">
-            </div>
+            <br>
+            <a href="mailto:info@techpro-example.com" class="btn" style="background: white; color: var(--secondary-color);">Написать нам</a>
         </div>
     </section>
 
-    <footer id="contact" class="bg-black pt-20 pb-10 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-4xl font-black mb-6">ГОТОВЫ К ДРАЙВУ?</h2>
-            <p class="text-gray-400 mb-10">Оставьте заявку, и мы свяжемся с вами в течение 15 минут.</p>
-            
-            <form class="max-w-md mx-auto space-y-4 mb-16">
-                <input type="text" placeholder="Ваше имя" class="w-full bg-white/5 border border-white/10 p-4 rounded text-white focus:outline-none focus:border-toyotaRed transition-colors">
-                <input type="tel" placeholder="+7 (___) ___-__-__" class="w-full bg-white/5 border border-white/10 p-4 rounded text-white focus:outline-none focus:border-toyotaRed transition-colors">
-                <button type="submit" class="w-full bg-toyotaRed hover:bg-red-700 text-white font-bold py-4 rounded transition-all uppercase tracking-widest">
-                    Заказать звонок
-                </button>
-            </form>
-
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-telegram"></i></a>
-            </div>
-            
-            <p class="text-gray-600 text-sm">
-                &copy; 2025 Toyota Fan Site. Не является официальным сайтом Toyota. <br>
-                Все изображения принадлежат их владельцам.
-            </p>
-        </div>
+    <footer>
+        <p>&copy; 2023 TechPro Engineering. Все права защищены.</p>
     </footer>
 
     <script>
-        // Intersection Observer for fade-in animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-        }, {
-            threshold: 0.1
-        });
-
-        document.querySelectorAll('.fade-in').forEach((el) => {
-            observer.observe(el);
         });
     </script>
-</body>
-</html>
 </body>
 </html>
