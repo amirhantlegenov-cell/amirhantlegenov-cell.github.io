@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechPro | Инженерные Решения</title>
+    <title>TechPro | Передовые Инженерные Решения и Консалтинг</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- Сброс стилей и переменные --- */
         :root {
-            --primary-color: #0056b3; /* Инженерный синий */
-            --secondary-color: #2c3e50; /* Темный грифель */
-            --accent-color: #f39c12; /* Оранжевый (безопасность/акцент) */
-            --light-bg: #f8f9fa;
+            --primary-color: #0056b3;
+            --secondary-color: #2c3e50;
+            --accent-color: #f39c12;
+            --light-bg: #f4f7f6;
             --text-color: #333;
             --white: #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
+            line-height: 1.8;
             color: var(--text-color);
             background-color: var(--white);
         }
 
-        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
-        /* --- Шапка (Header) --- */
+        /* Header */
         header {
             background: var(--secondary-color);
             color: var(--white);
@@ -41,43 +37,18 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            border: 2px solid var(--white);
-            padding: 5px 10px;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 20px;
-        }
-
-        nav a {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.6rem; font-weight: 700; border: 2px solid var(--white); padding: 5px 15px; }
+        nav ul { display: flex; gap: 25px; }
         nav a:hover { color: var(--accent-color); }
 
-        /* --- Герой (Hero Section) --- */
+        /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* Пример изображения */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -85,148 +56,61 @@
             justify-content: center;
             text-align: center;
             color: var(--white);
-            padding-top: 60px; /* Компенсация шапки */
         }
 
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 25px; line-height: 1.2; }
+        .hero-content p { font-size: 1.3rem; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; color: #ddd; }
 
         .btn {
             display: inline-block;
             background: var(--primary-color);
             color: var(--white);
-            padding: 12px 30px;
+            padding: 15px 35px;
             border-radius: 4px;
             font-weight: bold;
-            transition: background 0.3s;
+            text-transform: uppercase;
         }
+        .btn:hover { background: var(--accent-color); transform: translateY(-3px); }
 
-        .btn:hover { background: var(--accent-color); }
+        /* About Section */
+        .about { padding: 100px 0; background: var(--white); }
+        .about-flex { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-text h2 { font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 20px; }
+        .stats { display: flex; gap: 30px; margin-top: 30px; }
+        .stat-item { text-align: center; }
+        .stat-item span { display: block; font-size: 2rem; font-weight: 700; color: var(--primary-color); }
 
-        /* --- Секции (Общие стили) --- */
-        section {
-            padding: 80px 0;
-        }
+        /* Services Section */
+        .services { background: var(--light-bg); padding: 100px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .section-title .line { width: 80px; height: 4px; background: var(--primary-color); margin: 0 auto; }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .service-card { background: var(--white); padding: 40px; border-radius: 10px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .service-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .service-card h3 { margin: 20px 0; color: var(--secondary-color); }
+        .service-card p { font-size: 0.95rem; color: #666; }
 
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
+        /* Team Section */
+        .team { padding: 100px 0; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .team-member { text-align: center; }
+        .member-photo { width: 220px; height: 220px; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; border: 5px solid var(--light-bg); }
+        .member-photo img { width: 100%; height: 100%; object-fit: cover; }
 
-        .section-title .line {
-            width: 60px;
-            height: 4px;
-            background: var(--primary-color);
-            margin: 0 auto;
-        }
+        /* Contact Section */
+        .contact { background: var(--secondary-color); color: var(--white); padding: 100px 0; text-align: center; }
+        .contact h2 { margin-bottom: 40px; }
+        .contact-info { font-size: 1.2rem; margin-bottom: 40px; }
+        .contact-info p { margin-bottom: 15px; }
 
-        /* --- Услуги (Services) --- */
-        .services { background: var(--light-bg); }
+        footer { background: #1a252f; color: #999; text-align: center; padding: 30px 0; }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover { transform: translateY(-5px); }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        /* --- Команда (Team) --- */
-        .team-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .team-member {
-            text-align: center;
-            max-width: 300px;
-        }
-
-        .member-photo {
-            width: 200px;
-            height: 200px;
-            background-color: #ddd;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            border: 4px solid var(--primary-color);
-        }
-        
-        .member-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .team-member h3 { color: var(--secondary-color); margin-bottom: 5px; }
-        .team-member p { color: #666; font-style: italic; }
-
-        /* --- Контакты (Contact) --- */
-        .contact { background: var(--secondary-color); color: var(--white); }
-        .contact h2 { color: var(--white); }
-
-        .contact-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .contact-info p { margin: 10px 0; font-size: 1.1rem; }
-
-        /* --- Футер --- */
-        footer {
-            background: #1a252f;
-            color: #7f8c8d;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 0.9rem;
-        }
-
-        /* --- Адаптивность --- */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2rem; }
-            nav ul { display: none; } /* Для упрощения скрываем меню на моб (нужен JS для бургера) */
-            .container { justify-content: center; }
+            .hero-content h1 { font-size: 2.2rem; }
+            nav ul { display: none; }
         }
     </style>
 </head>
@@ -238,6 +122,7 @@
             <nav>
                 <ul>
                     <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">О компании</a></li>
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#team">Команда</a></li>
                     <li><a href="#contact">Контакты</a></li>
@@ -248,84 +133,104 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Инженерные решения будущего</h1>
-            <p>Профессиональное проектирование, технический аудит и внедрение инноваций для вашего производства.</p>
-            <a href="#contact" class="btn">Получить консультацию</a>
+            <h1>Интеллектуальный инжиниринг для индустрии 4.0</h1>
+            <p>Мы объединяем многолетний опыт классического проектирования с новейшими технологиями автоматизации и цифрового моделирования для оптимизации вашего бизнеса.</p>
+            <a href="#contact" class="btn">Обсудить проект</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-flex">
+                <div class="about-text">
+                    <h2>Более 15 лет технического совершенства</h2>
+                    <p>Компания <strong>TechPro</strong> начиналась как небольшое бюро конструкторских разработок. Сегодня мы — международная команда специалистов, помогающая промышленным гигантам и частным предприятиям внедрять инновации.</p>
+                    <p>Наша миссия — сделать производство прозрачным, безопасным и максимально эффективным за счет внедрения точных инженерных расчетов и современных систем управления.</p>
+                    <div class="stats">
+                        <div class="stat-item"><span>500+</span> Проектов</div>
+                        <div class="stat-item"><span>12</span> Стран</div>
+                        <div class="stat-item"><span>100%</span> Точность</div>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80" alt="Работа" style="width: 100%; border-radius: 10px;">
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="services" class="services">
-        <div class="section-title">
-            <h2>Наши компетенции</h2>
-            <div class="line"></div>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">⚙️</div>
-                <h3>Проектирование</h3>
-                <p>Разработка чертежей, 3D-моделей и технической документации любой сложности.</p>
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши услуги и решения</h2>
+                <div class="line"></div>
+                <p style="margin-top: 20px; max-width: 700px; margin-left: auto; margin-right: auto;">Мы предоставляем полный цикл инженерной поддержки: от первичного аудита и эскиза до пусконаладочных работ и сервисного обслуживания.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">🏭</div>
-                <h3>Автоматизация</h3>
-                <p>Внедрение АСУ ТП и роботизированных систем для повышения эффективности.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📐</div>
-                <h3>Технический надзор</h3>
-                <p>Контроль качества выполнения работ и соответствия стандартам ГОСТ и ISO.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🏗️ Проектирование и BIM</h3>
+                    <p>Мы создаем высокоточные информационные модели зданий и механизмов. Это позволяет исключить ошибки на этапе строительства и сократить расходы на материалы до 20%. Работаем в соответствии с международными стандартами качества.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🤖 Роботизация производств</h3>
+                    <p>Проектируем и внедряем роботизированные ячейки для сварки, паллетирования и сборки. Наши решения позволяют заменить рутинный человеческий труд неутомимыми машинами, повышая скорость выпуска продукции в 3 раза.</p>
+                </div>
+                <div class="service-card">
+                    <h3>📊 Энергоаудит и Эффективность</h3>
+                    <p>Проводим комплексный анализ энергопотребления вашего предприятия. Выявляем "узкие места" и предлагаем конкретные шаги по модернизации оборудования, которые окупаются в течение первых 12-18 месяцев эксплуатации.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🔍 Реверс-инжиниринг</h3>
+                    <p>Восстанавливаем техническую документацию и создаем точные копии деталей по имеющимся образцам. Незаменимая услуга для обслуживания импортного оборудования в условиях ограниченных поставок запчастей.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="team">
-        <div class="section-title">
-            <h2>Ведущие специалисты</h2>
-            <div class="line"></div>
-        </div>
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="member-photo">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Инженер">
-                </div>
-                <h3>Алексей Петров</h3>
-                <p>Главный инженер</p>
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши эксперты</h2>
+                <div class="line"></div>
             </div>
-            <div class="team-member">
-                <div class="member-photo">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Специалист">
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=60" alt=""></div>
+                    <h3>Алексей Петров</h3>
+                    <p>Главный инженер-конструктор. Опыт работы более 20 лет в тяжелом машиностроении.</p>
                 </div>
-                <h3>Мария Иванова</h3>
-                <p>Специалист по автоматизации</p>
-            </div>
-            <div class="team-member">
-                <div class="member-photo">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Технолог">
+                <div class="team-member">
+                    <div class="member-photo"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=60" alt=""></div>
+                    <h3>Мария Иванова</h3>
+                    <p>Ведущий эксперт по автоматизации. Магистр технических наук, специалист по нейросетям в АСУ ТП.</p>
                 </div>
-                <h3>Дмитрий Сидоров</h3>
-                <p>Инженер-технолог</p>
+                <div class="team-member">
+                    <div class="member-photo"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=60" alt=""></div>
+                    <h3>Дмитрий Сидоров</h3>
+                    <p>Руководитель отдела аудита. Сертифицированный международный эксперт по энергоэффективности.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="contact" class="contact">
-        <div class="section-title">
-            <h2>Свяжитесь с нами</h2>
-            <div class="line"></div>
-        </div>
-        <div class="contact-content">
+        <div class="container">
+            <h2>Готовы начать проект?</h2>
             <div class="contact-info">
-                <p>📍 г. Москва, ул. Индустриальная, д. 45</p>
-                <p>📞 +7 (999) 000-00-00</p>
-                <p>✉️ info@techpro-example.com</p>
+                <p>📍 <strong>Адрес:</strong> г. Москва, инновационный центр «Сколково», ул. Индустриальная, д. 45</p>
+                <p>📞 <strong>Телефон:</strong> +7 (495) 000-00-00 (многоканальный)</p>
+                <p>✉️ <strong>E-mail:</strong> consult@techpro-engineering.ru</p>
+                <p>⏰ <strong>График:</strong> Пн-Пт с 9:00 до 19:00</p>
             </div>
-            <br>
-            <a href="mailto:info@techpro-example.com" class="btn" style="background: white; color: var(--secondary-color);">Написать нам</a>
+            <a href="mailto:consult@techpro-engineering.ru" class="btn" style="background: var(--accent-color);">Запросить расчет стоимости</a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2023 TechPro Engineering. Все права защищены.</p>
+        <div class="container">
+            <p>&copy; 2008–2026 TechPro Engineering Group. Все права защищены. Копирование материалов запрещено.</p>
+        </div>
     </footer>
 
     <script>
