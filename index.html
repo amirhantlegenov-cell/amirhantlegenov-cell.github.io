@@ -149,11 +149,6 @@
             const touch = e.touches[0];
             handleInput(touch.clientX, touch.clientY);
         }, { passive: false }); // passive: false нужен, чтобы можно было отменить скролл
-
-        // Запрещаем скролл страницы пальцем, когда мы в игре
-        window.addEventListener('touchstart', (e) => {
-            if (isPlaying && !isPaused) e.preventDefault();
-        }, { passive: false });
         
         window.addEventListener('touchmove', (e) => {
             if (isPlaying && !isPaused) e.preventDefault();
