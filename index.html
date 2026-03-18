@@ -143,10 +143,6 @@
             updateInput(e.touches[0].clientX, e.touches[0].clientY);
         }, { passive: false });
 
-        window.addEventListener('keydown', (e) => {
-            if (e.key.toLowerCase() === 'p' || e.key === 'Escape') {
-                if (isPlaying) togglePause();
-
         // КЛАССЫ
         class Player {
             constructor() {
