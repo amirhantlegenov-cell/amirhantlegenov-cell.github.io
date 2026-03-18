@@ -1,248 +1,312 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechPro | Передовые Инженерные Решения и Консалтинг</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Neon Core | Тлегенов Амирхан</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0056b3;
-            --secondary-color: #2c3e50;
-            --accent-color: #f39c12;
-            --light-bg: #f4f7f6;
-            --text-color: #333;
-            --white: #ffffff;
+            --bg-color: #050505;
+            --primary: #00f3ff;
+            --accent: #ff00ea;
+            --danger: #ff2a2a;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.05);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.8;
-            color: var(--text-color);
-            background-color: var(--white);
+            margin: 0; padding: 0; overflow: hidden;
+            background-color: var(--bg-color);
+            font-family: 'Montserrat', sans-serif;
+            color: white; user-select: none;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-
-        /* Header */
-        header {
-            background: var(--secondary-color);
-            color: var(--white);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
         }
 
-        header .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.6rem; font-weight: 700; border: 2px solid var(--white); padding: 5px 15px; }
-        nav ul { display: flex; gap: 25px; }
-        nav a:hover { color: var(--accent-color); }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
+        /* Имя автора */
+        #author-badge {
+            position: absolute; top: 20px; right: 20px;
+            padding: 10px 20px; font-size: 0.9rem; font-weight: 700;
+            color: var(--primary); text-transform: uppercase; z-index: 100;
+            display: flex; align-items: center; gap: 10px;
         }
 
-        .hero-content h1 { font-size: 3.5rem; margin-bottom: 25px; line-height: 1.2; }
-        .hero-content p { font-size: 1.3rem; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; color: #ddd; }
+        /* Кнопка Паузы в игре */
+        #pause-trigger {
+            position: absolute; top: 20px; left: 20px;
+            background: var(--glass-bg); border: 1px solid var(--primary);
+            color: var(--primary); padding: 8px 15px; border-radius: 10px;
+            cursor: pointer; z-index: 100; display: none; font-weight: bold;
+            transition: all 0.3s;
+        }
+        #pause-trigger:hover { background: var(--primary); color: #000; }
+
+        /* Слои меню */
+        .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center; z-index: 50;
+        }
+
+        .menu-card { padding: 40px 60px; text-align: center; min-width: 300px; }
+
+        h1 {
+            font-weight: 900; font-size: 3.5rem; margin: 0;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
 
         .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 15px 35px;
-            border-radius: 4px;
-            font-weight: bold;
-            text-transform: uppercase;
+            background: transparent; color: white; border: 2px solid var(--primary);
+            padding: 12px 30px; font-size: 1rem; font-weight: 700;
+            border-radius: 30px; cursor: pointer; transition: all 0.3s;
+            text-transform: uppercase; letter-spacing: 2px; margin: 10px;
+            width: 220px;
         }
-        .btn:hover { background: var(--accent-color); transform: translateY(-3px); }
 
-        /* About Section */
-        .about { padding: 100px 0; background: var(--white); }
-        .about-flex { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; }
-        .about-text { flex: 1; min-width: 300px; }
-        .about-text h2 { font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 20px; }
-        .stats { display: flex; gap: 30px; margin-top: 30px; }
-        .stat-item { text-align: center; }
-        .stat-item span { display: block; font-size: 2rem; font-weight: 700; color: var(--primary-color); }
-
-        /* Services Section */
-        .services { background: var(--light-bg); padding: 100px 0; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 2.5rem; margin-bottom: 15px; }
-        .section-title .line { width: 80px; height: 4px; background: var(--primary-color); margin: 0 auto; }
-
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .service-card { background: var(--white); padding: 40px; border-radius: 10px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .service-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .service-card h3 { margin: 20px 0; color: var(--secondary-color); }
-        .service-card p { font-size: 0.95rem; color: #666; }
-
-        /* Team Section */
-        .team { padding: 100px 0; }
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .team-member { text-align: center; }
-        .member-photo { width: 220px; height: 220px; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; border: 5px solid var(--light-bg); }
-        .member-photo img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* Contact Section */
-        .contact { background: var(--secondary-color); color: var(--white); padding: 100px 0; text-align: center; }
-        .contact h2 { margin-bottom: 40px; }
-        .contact-info { font-size: 1.2rem; margin-bottom: 40px; }
-        .contact-info p { margin-bottom: 15px; }
-
-        footer { background: #1a252f; color: #999; text-align: center; padding: 30px 0; }
-
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.2rem; }
-            nav ul { display: none; }
+        .btn:hover {
+            background: var(--primary); color: #000;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
         }
+
+        .btn.secondary { border-color: var(--accent); color: var(--accent); }
+        .btn.secondary:hover { background: var(--accent); color: #000; box-shadow: 0 0 20px rgba(255, 0, 234, 0.5); }
+
+        #hud {
+            position: absolute; top: 60px; left: 40px;
+            font-size: 5rem; font-weight: 900; color: var(--primary);
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+            z-index: 5; opacity: 0; pointer-events: none;
+        }
+
+        canvas { display: block; cursor: none; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <div class="logo">TechPro</div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Главная</a></li>
-                    <li><a href="#about">О компании</a></li>
-                    <li><a href="#services">Услуги</a></li>
-                    <li><a href="#team">Команда</a></li>
-                    <li><a href="#contact">Контакты</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div id="author-badge" class="glass">Тлегенов Амирхан</div>
+    
+    <button id="pause-trigger" onclick="togglePause()">ПАУЗА (P)</button>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Интеллектуальный инжиниринг для индустрии 4.0</h1>
-            <p>Мы объединяем многолетний опыт классического проектирования с новейшими технологиями автоматизации и цифрового моделирования для оптимизации вашего бизнеса.</p>
-            <a href="#contact" class="btn">Обсудить проект</a>
+    <div id="main-menu-layer" class="overlay">
+        <div class="menu-card glass">
+            <h1 id="menu-title">NEON CORE</h1>
+            <div style="margin: 20px 0; color: #888;">Рекорд: <span id="best-score">0</span></div>
+            <button class="btn" onclick="startGame()">Начать игру</button>
         </div>
-    </section>
+    </div>
 
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-flex">
-                <div class="about-text">
-                    <h2>Более 15 лет технического совершенства</h2>
-                    <p>Компания <strong>TechPro</strong> начиналась как небольшое бюро конструкторских разработок. Сегодня мы — международная команда специалистов, помогающая промышленным гигантам и частным предприятиям внедрять инновации.</p>
-                    <p>Наша миссия — сделать производство прозрачным, безопасным и максимально эффективным за счет внедрения точных инженерных расчетов и современных систем управления.</p>
-                    <div class="stats">
-                        <div class="stat-item"><span>500+</span> Проектов</div>
-                        <div class="stat-item"><span>12</span> Стран</div>
-                        <div class="stat-item"><span>100%</span> Точность</div>
-                    </div>
-                </div>
-                <div style="flex: 1; min-width: 300px;">
-                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80" alt="Работа" style="width: 100%; border-radius: 10px;">
-                </div>
-            </div>
+    <div id="pause-menu-layer" class="overlay" style="display: none;">
+        <div class="menu-card glass">
+            <h1>ПАУЗА</h1>
+            <div style="margin-bottom: 30px; color: #888;">Игра приостановлена</div>
+            <button class="btn" onclick="togglePause()">Продолжить</button><br>
+            <button class="btn secondary" onclick="exitToMenu()">Выйти в меню</button>
         </div>
-    </section>
+    </div>
 
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Наши услуги и решения</h2>
-                <div class="line"></div>
-                <p style="margin-top: 20px; max-width: 700px; margin-left: auto; margin-right: auto;">Мы предоставляем полный цикл инженерной поддержки: от первичного аудита и эскиза до пусконаладочных работ и сервисного обслуживания.</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3> Проектирование и BIM</h3>
-                    <p>Мы создаем высокоточные информационные модели зданий и механизмов. Это позволяет исключить ошибки на этапе строительства и сократить расходы на материалы до 20%. Работаем в соответствии с международными стандартами качества.</p>
-                </div>
-                <div class="service-card">
-                    <h3> Роботизация производств</h3>
-                    <p>Проектируем и внедряем роботизированные ячейки для сварки, паллетирования и сборки. Наши решения позволяют заменить рутинный человеческий труд неутомимыми машинами, повышая скорость выпуска продукции в 3 раза.</p>
-                </div>
-                <div class="service-card">
-                    <h3>📊 Энергоаудит и Эффективность</h3>
-                    <p>Проводим комплексный анализ энергопотребления вашего предприятия. Выявляем "узкие места" и предлагаем конкретные шаги по модернизации оборудования, которые окупаются в течение первых 12-18 месяцев эксплуатации.</p>
-                </div>
-                <div class="service-card">
-                    <h3>🔍 Реверс-инжиниринг</h3>
-                    <p>Восстанавливаем техническую документацию и создаем точные копии деталей по имеющимся образцам. Незаменимая услуга для обслуживания импортного оборудования в условиях ограниченных поставок запчастей.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="team" class="team">
-        <div class="container">
-            <div class="section-title">
-                <h2>Наши эксперты</h2>
-                <div class="line"></div>
-            </div>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=60" alt=""></div>
-                    <h3>Алексей Петров</h3>
-                    <p>Главный инженер-конструктор. Опыт работы более 20 лет в тяжелом машиностроении.</p>
-                </div>
-                <div class="team-member">
-                    <div class="member-photo"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=60" alt=""></div>
-                    <h3>Мария Иванова</h3>
-                    <p>Ведущий эксперт по автоматизации. Магистр технических наук, специалист по нейросетям в АСУ ТП.</p>
-                </div>
-                <div class="team-member">
-                    <div class="member-photo"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=60" alt=""></div>
-                    <h3>Дмитрий Сидоров</h3>
-                    <p>Руководитель отдела аудита. Сертифицированный международный эксперт по энергоэффективности.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Готовы начать проект?</h2>
-            <div class="contact-info">
-                <p>📍 <strong>Адрес:</strong> г. Петропавловск, ​Улица Театральная, 42</p>
-                <p>📞 <strong>Телефон:</strong> +7 (747) 000-00-00 (многоканальный)</p>
-                <p>✉️ <strong>E-mail:</strong> consult@techpro-engineering.ru</p>
-                <p>⏰ <strong>График:</strong> Пн-Пт с 9:00 до 19:00</p>
-            </div>
-            <a href="mailto:consult@techpro-engineering.ru" class="btn" style="background: var(--accent-color);">Запросить расчет стоимости</a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2008–2026 TechPro Engineering Group. Все права защищены. Копирование материалов запрещено.</p>
-        </div>
-    </footer>
+    <div id="hud">0</div>
+    <canvas id="gameCanvas"></canvas>
 
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const hud = document.getElementById('hud');
+        const mainMenu = document.getElementById('main-menu-layer');
+        const pauseMenu = document.getElementById('pause-menu-layer');
+        const pauseBtn = document.getElementById('pause-trigger');
+        const bestScoreEl = document.getElementById('best-score');
+        const menuTitle = document.getElementById('menu-title');
+
+        let width, height, animationId;
+        let isPlaying = false;
+        let isPaused = false;
+        let score = 0;
+        let bestScore = localStorage.getItem('neonCoreBest') || 0;
+        bestScoreEl.innerText = bestScore;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        let mouse = { x: width / 2, y: height / 2 };
+        window.addEventListener('mousemove', (e) => {
+            if (!isPaused) {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            }
         });
+
+        // Слушатель клавиш для паузы
+        window.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'p' || e.key === 'Escape') {
+                if (isPlaying) togglePause();
+            }
+        });
+
+        class Player {
+            constructor() {
+                this.x = width / 2; this.y = height / 2;
+                this.radius = 12; this.trail = [];
+                this.maxTrail = 30;
+            }
+            update() {
+                this.x += (mouse.x - this.x) * 0.15;
+                this.y += (mouse.y - this.y) * 0.15;
+                this.trail.unshift({ x: this.x, y: this.y });
+                if (this.trail.length > this.maxTrail) this.trail.pop();
+            }
+            draw() {
+                if (this.trail.length > 2) {
+                    ctx.beginPath();
+                    ctx.moveTo(this.trail[0].x, this.trail[0].y);
+                    for (let i = 1; i < this.trail.length - 1; i++) {
+                        const xc = (this.trail[i].x + this.trail[i + 1].x) / 2;
+                        const yc = (this.trail[i].y + this.trail[i + 1].y) / 2;
+                        ctx.quadraticCurveTo(this.trail[i].x, this.trail[i].y, xc, yc);
+                    }
+                    ctx.strokeStyle = "rgba(0, 243, 255, 0.5)";
+                    ctx.lineWidth = this.radius; ctx.lineCap = 'round'; ctx.stroke();
+                }
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#fff'; ctx.shadowBlur = 20; ctx.shadowColor = '#00f3ff';
+                ctx.fill(); ctx.shadowBlur = 0;
+            }
+        }
+
+        class Energy {
+            constructor() {
+                this.x = Math.random() * (width - 100) + 50;
+                this.y = Math.random() * (height - 100) + 50;
+                this.angle = 0;
+            }
+            draw() {
+                this.angle += 0.1;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 8 + Math.sin(this.angle) * 3, 0, Math.PI * 2);
+                ctx.fillStyle = '#ff00ea';
+                ctx.shadowBlur = 15; ctx.shadowColor = '#ff00ea';
+                ctx.fill(); ctx.shadowBlur = 0;
+            }
+        }
+
+        class Enemy {
+            constructor(speedMult) {
+                const side = Math.floor(Math.random() * 4);
+                if (side === 0) { this.x = -30; this.y = Math.random() * height; }
+                else if (side === 1) { this.x = width + 30; this.y = Math.random() * height; }
+                else if (side === 2) { this.x = Math.random() * width; this.y = -30; }
+                else { this.x = Math.random() * width; this.y = height + 30; }
+                const angle = Math.atan2(mouse.y - this.y, mouse.x - this.x);
+                const speed = (2 + Math.random() * 2) * speedMult;
+                this.vx = Math.cos(angle) * speed; this.vy = Math.sin(angle) * speed;
+            }
+            update() { this.x += this.vx; this.y += this.vy; }
+            draw() {
+                ctx.beginPath(); ctx.arc(this.x, this.y, 12, 0, Math.PI * 2);
+                ctx.fillStyle = '#ff2a2a'; ctx.shadowBlur = 15; ctx.shadowColor = '#ff2a2a';
+                ctx.fill(); ctx.shadowBlur = 0;
+            }
+        }
+
+        let player, energies, enemies, frames;
+
+        function startGame() {
+            player = new Player();
+            energies = [new Energy()];
+            enemies = [];
+            score = 0;
+            frames = 0;
+            isPaused = false;
+            hud.innerText = score;
+            mainMenu.style.display = 'none';
+            pauseMenu.style.display = 'none';
+            pauseBtn.style.display = 'block';
+            hud.style.opacity = '1';
+            isPlaying = true;
+            loop();
+        }
+
+        function togglePause() {
+            if (!isPlaying) return;
+            isPaused = !isPaused;
+            if (isPaused) {
+                pauseMenu.style.display = 'flex';
+                canvas.style.filter = 'blur(5px)';
+            } else {
+                pauseMenu.style.display = 'none';
+                canvas.style.filter = 'none';
+                loop(); // Возобновляем цикл
+            }
+        }
+
+        function exitToMenu() {
+            isPlaying = false;
+            isPaused = false;
+            cancelAnimationFrame(animationId);
+            pauseMenu.style.display = 'none';
+            mainMenu.style.display = 'flex';
+            pauseBtn.style.display = 'none';
+            hud.style.opacity = '0';
+            canvas.style.filter = 'none';
+            menuTitle.innerText = "NEON CORE";
+        }
+
+        function gameOver() {
+            isPlaying = false;
+            pauseBtn.style.display = 'none';
+            cancelAnimationFrame(animationId);
+            if (score > bestScore) {
+                bestScore = score;
+                localStorage.setItem('neonCoreBest', bestScore);
+                bestScoreEl.innerText = bestScore;
+            }
+            mainMenu.style.display = 'flex';
+            hud.style.opacity = '0';
+            menuTitle.innerText = "GAME OVER";
+        }
+
+        function loop() {
+            if (!isPlaying || isPaused) return;
+            
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.3)';
+            ctx.fillRect(0, 0, width, height);
+
+            frames++;
+            if (frames % Math.max(20, 60 - score) === 0) enemies.push(new Enemy(1 + score * 0.05));
+
+            player.update();
+            player.draw();
+
+            energies.forEach((en, i) => {
+                en.draw();
+                if (Math.hypot(player.x - en.x, player.y - en.y) < player.radius + 20) {
+                    energies.splice(i, 1);
+                    score++;
+                    hud.innerText = score;
+                    energies.push(new Energy());
+                }
+            });
+
+            enemies.forEach((en, i) => {
+                en.update();
+                en.draw();
+                if (Math.hypot(player.x - en.x, player.y - en.y) < player.radius + 10) gameOver();
+                if (en.x < -100 || en.x > width + 100 || en.y < -100 || en.y > height + 100) enemies.splice(i, 1);
+            });
+
+            animationId = requestAnimationFrame(loop);
+        }
     </script>
 </body>
 </html>
-
