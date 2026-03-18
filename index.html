@@ -272,8 +272,13 @@
         document.getElementById('exit-btn').addEventListener('click', exitToMenu);
 
         // Кнопки клавиатуры
-        window.addEventListener('keydown', (e) => {
-            if (e.key.toLowerCase() === 'p' || e.key === 'Escape') togglePause();
+     window.addEventListener('keydown', (e) => {
+            // Проверяем английскую 'p', русскую 'з' и Escape
+            const key = e.key.toLowerCase();
+            if (key === 'p' || key === 'з' || key === 'escape') {
+                togglePause();
+            }
+        });
         });
     </script>
 </body>
